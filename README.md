@@ -14,7 +14,7 @@
 
 | 文件 | 编写 | 执行 |
 | --- | --- | --- |
-| [miniprogram-test.md](./miniprogram-test.md) | Cursor | Codex（微信开发者工具） |
+| [miniprogram-test.md](./miniprogram-test.md) | Cursor | Codex（覆盖登录/首页/上传/模板/分享/上架/广场/搜索/我的/设置/反馈/管理/状态/点赞/异常） |
 | [cms-test.md](./cms-test.md) | Codex（Cursor 已写初稿） | Codex + Cursor |
 | [issue-template.md](./issue-template.md) | 双方遵守 | 提交 Issues 时复制 |
 | [environments.md](./environments.md) | Cursor | 测前必读 |
