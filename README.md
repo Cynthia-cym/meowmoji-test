@@ -2,6 +2,12 @@
 
 > 存放**可点击操作**的测试用例与统一 Issue 模板，不属于 CMS 或小程序代码仓库。
 
+## 当前版本
+
+- 小程序真机验收真源：`miniprogram-test.md` 中 `MP-400~MP-416`
+- CMS 运营验收真源：`cms-admin-test.md`
+- 当前版本：`V2026.06.02`
+
 ## 仓库关系
 
 | 仓库 | 维护方 | 用途 |
@@ -14,8 +20,9 @@
 
 | 文件 | 编写 | 执行 |
 | --- | --- | --- |
-| [miniprogram-test.md](./miniprogram-test.md) | Cursor | Codex（含**消息通知**：站内消息 + 微信订阅消息） |
-| [cms-test.md](./cms-test.md) | Codex（Cursor 已写初稿） | Codex + Cursor |
+| [miniprogram-test.md](./miniprogram-test.md) | Codex（规格真源） | Cursor 真机执行，产品扫码验收 |
+| [cms-admin-test.md](./cms-admin-test.md) | Codex | Cursor / 运营按浏览器点击执行 |
+| [cms-test.md](./cms-test.md) | 历史稿保留 | 仅供追溯 |
 | [issue-template.md](./issue-template.md) | 双方遵守 | 提交 Issues 时复制 |
 | [environments.md](./environments.md) | Cursor | 测前必读 |
 
