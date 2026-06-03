@@ -1,5 +1,7 @@
 # Meowmoji 交叉测试仓库
 
+> Codex 另一台电脑：**先读 [CODEX.md](./CODEX.md)**（仅 GitHub，无 Cursor 工作区）
+
 > 可点击操作测试用例 + Issue 模板。Codex 写规格，Cursor 执行。
 
 ## 当前版本（V2026.06.03）
