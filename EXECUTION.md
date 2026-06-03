@@ -1,15 +1,15 @@
 # 小程序交叉测试 · 执行记录
 
 > **用例规格（Codex 维护）：** [miniprogram-test.md](./miniprogram-test.md)  
-> **策略（Live）：** [../docs/live/TEST.md](../docs/live/TEST.md)
+> **策略（Live 索引）：** [Meowmoji--mini-program/docs/live/TEST.md](https://github.com/Cynthia-cym/Meowmoji--mini-program/blob/main/docs/live/TEST.md)
 
 ---
 
 ## 说明
 
 - **Codex** 编写/更新 MP-xxx 用例步骤与预期
-- **Cursor** 在本文件记录每次执行结果
-- 重大里程碑同步 [docs/live/CHANGELOG.md](../docs/live/CHANGELOG.md)
+- **Cursor** 在本文件记录真机执行结果
+- 重大里程碑以工作区 live 文档为准
 
 ---
 

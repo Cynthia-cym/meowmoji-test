@@ -6,15 +6,15 @@
 
 - 小程序真机验收真源：`miniprogram-test.md` 中 `MP-400~MP-416`
 - CMS 运营验收真源：`cms-admin-test.md`
-- 当前版本：`V2026.06.02`
+- 当前版本：`V2026.06.03`
 
 ## 仓库关系
 
 | 仓库 | 维护方 | 用途 |
 | --- | --- | --- |
 | [Meowmoji-CMS01](https://github.com/Cynthia-cym/Meowmoji-CMS01) | Cursor | CMS 后台 + API |
-| [Meowmoji--mini-program](https://github.com/Cynthia-cym/Meowmoji--mini-program) | Codex | 小程序文档 + 云函数 |
-| **meowmoji-test**（本仓） | 双方读写 | 测试用例 + 模板 |
+| [Meowmoji--mini-program](https://github.com/Cynthia-cym/Meowmoji--mini-program) | Cursor | 小程序 + 云函数开发与部署 |
+| **meowmoji-test**（本仓） | Codex 维护规格，Cursor 执行 | 测试用例真源 |
 
 ## 文件说明
 
@@ -33,6 +33,11 @@
 - [cursor-codex-workflow-paradigm.md](https://github.com/Cynthia-cym/Meowmoji-CMS01/blob/main/docs/cursor-codex-workflow-paradigm.md)
 
 本仓只负责**人工可点的功能测试**与**交叉验收**。
+
+当前 live 索引见：
+
+- [Meowmoji--mini-program/docs/live/STATUS.md](https://github.com/Cynthia-cym/Meowmoji--mini-program/blob/main/docs/live/STATUS.md)
+- [Meowmoji--mini-program/docs/live/TEST.md](https://github.com/Cynthia-cym/Meowmoji--mini-program/blob/main/docs/live/TEST.md)
 
 ## 快速开始
 
