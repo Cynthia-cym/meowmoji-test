@@ -1,9 +1,9 @@
 # 微信小程序测试用例（Codex 维护）
 
-> **维护：** Codex（规格真源）
-> **执行：** Cursor 修复后按本文真机验收；产品以手机扫码预览结果验收
-> **规范：** 纯用户点击/真机操作，步骤不出现 API/云函数/数据库等术语
-> **环境：** 见 [environments.md](./environments.md)
+> **维护：** Codex（规格真源）  
+> **执行：** Cursor（真机/开发者工具）；产品扫码验收  
+> **规范：** 纯用户点击/真机操作，步骤不出现 API/云函数/数据库等术语  
+> **环境：** 见 [environments.md](./environments.md)  
 > **更新：** 2026-06-03（按 live 索引与 V1.4 current 校准）
 
 **通过标准：** 每步实际结果与「预期结果」一致；失败按 [issue-template.md](./issue-template.md) 提交到 `Meowmoji--mini-program` Issues。
@@ -916,4 +916,4 @@
 | 日期 | 执行人 | 必测模块全部通过 | 失败编号 |
 | --- | --- | --- | --- |
 | 2026-05-31 | Cursor | ☐ | MP-142、MP-143、MP-145、MP-150、MP-151、MP-152、MP-153、MP-154（其中 MP-140/141/144/155 已完成后端闭环；剩余需真机账号/微信服务通知/CMS人工动作） |
-| 2026-06-01 | Cursor | ☐ | 上架自动化：微信表情平台新流程已文档化（handoff ⑬）；Puppeteer 名称/介绍填表已修代码，staging 待部署复测；MP 真机项仍待 Codex |
+| 2026-06-01 | Cursor | ☐ | 上架自动化：微信表情平台新流程已文档化（handoff ⑬）；Puppeteer 名称/介绍填表已修代码，staging 待部署复测；MP 真机项仍待 Cursor 执行 |
