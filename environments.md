@@ -7,7 +7,7 @@
 | 用途 | 地址 | 说明 |
 | --- | --- | --- |
 | CMS 后台 | `https://cms.meowmoji.cn` | 浏览器验收主入口 |
-| Staging API（参考） | `https://stg-api.meowmoji.cn` | 勿写裸 IP `:18180` |
+| Staging API（参考） | `https://stg-api.meowmoji.cn` | 小程序 / CMS 联调统一走 HTTPS staging 域名 |
 | 小程序 | 体验版 **v1.0.10+** | 预览二维码真机 |
 | UI CDN | `https://cdn.meowmoji.cn` | downloadFile 合法域名 |
 
@@ -16,7 +16,7 @@
 | 角色 | 说明 |
 | --- | --- |
 | CMS 超管 | 运营提供，勿写入公开 Issue |
-| C 端邮箱 | 须能收 SES 验证码 |
+| C 端邮箱 | 由运营提供，须能收 SES 验证码 |
 
 ## Issues
 
