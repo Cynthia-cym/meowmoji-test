@@ -1,37 +1,37 @@
 # 小程序交叉测试 · 执行记录
 
-> **用例：** [miniprogram-test.md](./miniprogram-test.md)（MP-400~416）· [cms-admin-test.md](./cms-admin-test.md)（CMS-400~409）  
-> **计划：** [TEST-PLAN-2026-06-03.md](./TEST-PLAN-2026-06-03.md)  
-> **策略：** [Meowmoji-CMS01/docs/live/TEST.md](https://github.com/Cynthia-cym/Meowmoji-CMS01/blob/main/docs/live/TEST.md)
+> **用例 v3：** [TEST-SPEC-v3.md](./TEST-SPEC-v3.md) · **Gate 164** · [TEST-PRIORITY-v3.md](./TEST-PRIORITY-v3.md)  
+> **排期：** [TEST-SCHEDULE-v3.md](./TEST-SCHEDULE-v3.md) · **产品路径：** [TEST-ACCEPTANCE-PATHS-v3.md](./TEST-ACCEPTANCE-PATHS-v3.md)  
+> **飞书：** [feishu-gate-v3.md](./feishu-gate-v3.md) · [Wiki](https://qcnp7uavxd21.feishu.cn/wiki/DqxmwME1giejvgkauWycNXqanRc)
 
 ---
 
-## 说明
+## 说明（v3 · 2026-06-03）
 
-- **Codex** 维护用例规格（不写代码、不执行）
-- **Cursor** 执行全部测试并记录本文件
-- **2026-06-03：** 跳过 Puppeteer 自动上架；真源 MP-400+ / CMS-400+
+- **Gate：** P0(61) + P1(103) = **164**
+- **产品：** 真机 P0 一日路径（TEST-ACCEPTANCE-PATHS-v3）
+- **Cursor：** 全部 Gate · 开发者工具 + CMS + CI
 
 ---
 
 ## 执行记录
 
-| 日期 | 执行人 | 环境 | 通过 | 失败/待测/SKIP | 备注 |
+| 日期 | 执行人 | 环境 | Gate 通过 | 失败/待测 | 备注 |
 | --- | --- | --- | --- | --- | --- |
-| 2026-05-31 | Cursor | staging API | 部分 | MP-142~145、MP-150~154 | 后端闭环；真机待测 |
-| 2026-06-01 | — | — | — | — | 文档治理切换 |
-| 2026-06-03 | — | v1.0.10 体验版 | — | — | 计划已 push；待 Phase 0 |
+| 2026-05-31 | Cursor | staging | — | v2 编号 | 历史 |
+| 2026-06-03 | — | v1.0.10 | — | — | v3 定稿；待按 Gate 重跑 |
+| 2026-06-04 | Cursor | staging + CDN | 部分 | 真机待测 | admin-api 49/49；gallery API 3×catalog+4 preview；CDN 200；广场/贴纸 B 待产品真机 |
+| 2026-06-05 | Cursor | staging + cms.meowmoji.cn | API ✅ | CMS-C4-007~010 待浏览器 | 三 Tab 后端 rsync+deploy；listing GET 200；Vercel prod；单测 65+30 |
+| 2026-06-14 | Cursor | 本机 CDP + staging | 单测 96 ✅ | E2E 待复验 | ADR-017 收敛；修复假成功/只传1张；见 [sticker-automation-test-2026-06.md](./sticker-automation-test-2026-06.md) |
 
 ---
 
-## 待执行（TEST-PLAN-2026-06-03）
+## 待执行（TEST-SCHEDULE-v3）
 
-| Phase | 内容 | 负责人 |
+| 日 | 内容 | 负责人 |
 | --- | --- | --- |
-| 0 | check:all + admin-api test + healthz | Cursor |
-| 1 | MP-400~410 真机 P0 | Cursor |
-| 2 | MP-414~415 + CMS-403/404/407 | Cursor |
-| 3 | CMS-400~409（405 草稿模式留意） | Cursor |
-| 4 | MP-411~413、416 + CMS 其余 P1 | Cursor |
+| D1 | P0 主路径 + E2E-001 | 产品真机 + Cursor CMS |
+| D2 | P1 小程序逆向/边界/BND | Cursor |
+| D3 | P1 CMS + E2E + NFR 冒烟 | Cursor |
 
-**SKIP：** CMS-030/031 · MP-123 · MP-153 全量 · Puppeteer 自动提交微信
+**SKIP（P3）：** MP-F10-* · CMS-C4-006 自动提交微信
