@@ -23,6 +23,7 @@
 | 2026-06-04 | Cursor | staging + CDN | 部分 | 真机待测 | admin-api 49/49；gallery API 3×catalog+4 preview；CDN 200；广场/贴纸 B 待产品真机 |
 | 2026-06-05 | Cursor | staging + cms.meowmoji.cn | API ✅ | CMS-C4-007~010 待浏览器 | 三 Tab 后端 rsync+deploy；listing GET 200；Vercel prod；单测 65+30 |
 | 2026-06-14 | Cursor | 本机 CDP + staging | 单测 96 ✅ | E2E 待复验 | ADR-017 收敛；修复假成功/只传1张；见 [sticker-automation-test-2026-06.md](./sticker-automation-test-2026-06.md) |
+| 2026-06-16 | Cursor | CDP + staging `d6e1d8c` + Vercel prod | listing 单测 ✅ | E2E 待复跑 | work_id=26 附加信息/赞赏 ✅；listing `uploader_bg` 假跳过已修并部署；见 §8 |
 
 ---
 
