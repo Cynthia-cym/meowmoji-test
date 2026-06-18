@@ -1,6 +1,6 @@
-# Meowmoji 表情上架自动化 · 测试归档（2026-06-14 — 持续更新至 2026-06-16）
+# Meowmoji 表情上架自动化 · 测试归档（2026-06-14 — 持续更新至 2026-06-18）
 
-> **版本：** ADR-017 · CDP 主线  
+> **版本：** ADR-017 · CDP 主线 · submit-result-v2  
 > **关联用例：** TEST-SPEC-v3 §十三 CMS-C4-* · [cms-admin-test.md](./cms-admin-test.md)  
 > **执行记录：** [EXECUTION.md](./EXECUTION.md)
 
@@ -33,7 +33,8 @@
 | AUTO-CDP-002 | `automation:test-cdp` 最小连通 | P0 | ✅ | 阶段 0–1 |
 | AUTO-CDP-003 | 批量上传 N 张贴纸 | P0 | 🟡 | 代码已修；待复验 |
 | AUTO-CDP-004 | 版权/横幅/封面/图标 | P0 | 🟡 | 2026-06-16 修 `uploader_bg` 假跳过；待 work_id=26 复跑 |
-| AUTO-CDP-005 | 保存须见「保存成功」 | P0 | 🟡 | 代码已修；待复验 |
+| AUTO-CDP-005 | 提交成功见 `stiker/result` | P0 | 🟡 | submit-result-v2；work_id=20 微信 ✅；待新作品 CMS `succeeded` |
+| AUTO-CDP-006 | CDP 审核状态同步 CMS | P1 | ✅ | `sync-status-cdp.js` · scraped 5/9 · 2026-06-17 |
 
 **SKIP：** CMS-C4-006 自动提交微信（产品范围外）
 
@@ -87,20 +88,20 @@ cd Meowmoji-CMS01/admin-api && npm test
 
 | 维度 | 结论 |
 | --- | --- |
-| 架构 | CDP 主线代码与文档已收敛；云 headless 路径已证伪并禁用 |
+| 架构 | CDP 主线代码与文档已收敛；云 headless / Puppeteer 主路径 **已证伪并禁用** |
 | CMS 队列/UI | ✅ 可用 |
-| 端到端保存草稿 | 🟡 **P0 待复验**（`d6e1d8c` 部署后 work_id=26 从头开始） |
+| 审核状态同步 | ✅ 2026-06-17 `sync-status-cdp` 单测 + staging |
+| 端到端直接提交 | 🟡 **P0 待复验**（submit-result-v2 已合入；用新作品验 CMS 回写） |
 | Gate | 表情自动化不单独 Gate；归入 CMS-C4-003 P0 |
 
 ---
 
 ## 7. 下一步测试
 
-1. 重启 `worker:cdp` 加载 **`d6e1d8c`**
-2. CMS 硬刷新确认失败行**无**「提交上架」
-3. **小野的日常2**「从头开始」→ 日志应有 `listing upload ok via file_input`（非 `uploader_bg` skip）
-4. 执行 AUTO-CDP-003~005 + CMS-C4-003
-5. 回填 [EXECUTION.md](./EXECUTION.md)
+1. 重启 `worker:cdp` → 确认 `automationRev: 2026-06-16-submit-result-v2`
+2. **新作品**端到端（勿重跑 work_id=20）→ CMS `succeeded` +「已提交表情商店」Tab
+3. work_id=26 listing 复跑（`uploader_bg` 修复后横幅/封面/图标）
+4. 回填 [EXECUTION.md](./EXECUTION.md)
 
 ---
 
@@ -137,3 +138,15 @@ cd Meowmoji-CMS01/admin-api && npm test
 **留档：** [docs/archive/2026-06-sticker-listing-submit-debug/README.md](../docs/archive/2026-06-sticker-listing-submit-debug/README.md)  
 **代码指纹：** `automationRev: 2026-06-16-submit-result-v2`  
 **明日复验：** 新作品 + 确认 `[automation-worker] succeeded` 与「已提交表情商店」Tab
+
+---
+
+## 10. CDP 审核状态同步（2026-06-17 · cdp-review-sync-v1）
+
+| 项 | 结果 |
+| --- | --- |
+| 脚本 | `sync-status-cdp.js` · `npm run automation:sync-review-status` |
+| Worker 顺序 | 启动/周期：平台状态拉取 → `schedule-publish` → `syncSubmittedStatuses` |
+| 指纹 | `AUTOMATION_SCRIPT_REV=2026-06-17-cdp-review-sync-v1` |
+| 验证 | scraped 5/9 albums；`小野的日常2` → `rejected`；`node --test test/automation-cdp-config.test.js` 3 pass |
+| 关联 | [CHANGELOG](../docs/live/CHANGELOG.md) cdp-review-sync-v1 · AUTO-CDP-006 |
