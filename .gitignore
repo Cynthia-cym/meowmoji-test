@@ -1,0 +1,8 @@
+# Feishu 验收清单上传脚本中间产物（可由 TEST-SPEC-v3 / upload-feishu-*.mjs 重新生成）
+.acceptance-*.json
+.feishu-acceptance-upload-log.json
+.priority-v3.json
+feishu-auth-qrcode.png
+
+# 本地工具依赖（勿提交）
+node_modules/
