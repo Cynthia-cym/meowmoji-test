@@ -1,10 +1,6 @@
-# CMS 运营后台测试用例（历史追溯稿）
+# CMS 运营后台测试用例（历史追溯稿 · legacy）
 
-> **编写：** Codex（可补充） · **执行：** Cursor（浏览器访问 CMS）  
-> **规范：** 纯点击操作，不出现接口名/字段名  
-> **环境：** 见 [environments.md](./environments.md)
-
-> **说明：** 本文件仅供追溯；本轮真源请以 [cms-admin-test.md](./cms-admin-test.md) 的 **CMS-400~409** 为准。
+> **status:** legacy · **真源：** [TEST-SPEC-v3.md](./TEST-SPEC-v3.md) · [cms-admin-test.md](./cms-admin-test.md) CMS-400+
 
 **通过标准：** 与预期一致；失败按 [issue-template.md](./issue-template.md) 提交到 `Meowmoji-CMS01` Issues。
 

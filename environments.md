@@ -1,15 +1,24 @@
-# 测试环境（2026-06-03）
+# 测试环境（2026-06-23）
 
-> 测前更新；用例不写技术术语，执行时对照本表。
+> 测前更新；用例不写技术术语，执行时对照本表。  
+> **Gate3 后默认验收环境：** 正式版 + 生产 API（见下表「现行」）。
 
-## 地址
+## 现行（Gate3/Gate4 · 默认）
 
-| 用途 | 地址 | 说明 |
+| 用途 | 地址 / 版本 | 说明 |
 | --- | --- | --- |
-| CMS 后台 | `https://cms.meowmoji.cn` | 浏览器验收主入口 |
-| Staging API（参考） | `https://stg-api.meowmoji.cn` | 小程序 / CMS 联调统一走 HTTPS staging 域名 |
-| 小程序 | 体验版 **v1.0.10+** | 预览二维码真机 |
+| 小程序 | 正式版 **v1.0.51+** | 产品真机 / 回归主环境 |
+| C 端 API | `https://api.meowmoji.cn` | 正式用户数据 |
+| CMS 后台 | `https://cms.meowmoji.cn` | 浏览器验收；直连 **生产 API** |
 | UI CDN | `https://cdn.meowmoji.cn` | downloadFile 合法域名 |
+
+## 联调（Gate0 / 发版前 · 非默认）
+
+| 用途 | 地址 / 版本 | 说明 |
+| --- | --- | --- |
+| 小程序 | 体验版 + `stg-api` | 新功能联调、Gate0 证据 |
+| Staging API | `https://stg-api.meowmoji.cn` | 与生产库隔离 |
+| Staging CMS | `https://stg-cms.meowmoji.cn` | 可选 |
 
 ## 测试账号
 

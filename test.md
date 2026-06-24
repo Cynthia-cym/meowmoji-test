@@ -18,7 +18,7 @@
 | 文档 | 用途 |
 | --- | --- |
 | **本文件** | 设计原则（AI 必须严格遵守） |
-| [TEST-SPEC-v3.md](./TEST-SPEC-v3.md) | 用例规格真源（269 条 · Gate 164） |
+| [TEST-SPEC-v3.md](./TEST-SPEC-v3.md) | 用例规格真源（275 条 · Gate 170） |
 | [TEST-PRIORITY-v3.md](./TEST-PRIORITY-v3.md) | 优先级定义 |
 | [TEST-ACCEPTANCE-PATHS-v3.md](./TEST-ACCEPTANCE-PATHS-v3.md) | 产品真机 P0 路径 |
 | [TEST-SCHEDULE-v3.md](./TEST-SCHEDULE-v3.md) | D1–D3 排期 |

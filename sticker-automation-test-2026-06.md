@@ -11,7 +11,7 @@
 | 角色 | 范围 |
 | --- | --- |
 | **Cursor** | CMS 浏览器验收 · 本机 `worker:cdp` 联调 · 单测 `admin-api npm test` |
-| **产品（你）** | 微信表情平台草稿人工核对 · 「提交审核」人工操作 |
+| **产品（你）** | 微信表情开放平台草稿人工核对 · 「提交审核」人工操作 |
 | **不参与** | CMS 后台点测由 Cursor 负责（ADR-011） |
 
 ---
@@ -22,7 +22,7 @@
 | --- | --- | --- | --- | --- |
 | CMS-C4-001 | 上架任务列表加载 | P1 | ✅ | API/页面可用 |
 | CMS-C4-002 | 审核通过后进入队列 | P1 | ✅ | 入队正常 |
-| CMS-C4-003 | CDP 保存草稿成功 | P0 | 🟡 | 2026-06-16 附加信息/赞赏已通；listing 假跳过已修代码待复验 |
+| CMS-C4-003 | CDP 自动提交成功（ADR-018） | P0 | 🟡 | submit-result-v2 已合入；生产库新作品 E2E 待复验 |
 | CMS-C4-004 | 任务失败可重试 | P2 | 🟡 | 续跑/从头开始 + checkpoint；按钮三态已部署 CMS |
 | CMS-C4-005 | 状态与小程序同步 | P1 | ⬜ | 待端到端 |
 | CMS-C4-007 | 三 Tab 列表加载 | P1 | ✅ | 2026-06-05 |
@@ -34,7 +34,7 @@
 | AUTO-CDP-003 | 批量上传 N 张贴纸 | P0 | 🟡 | 代码已修；待复验 |
 | AUTO-CDP-004 | 版权/横幅/封面/图标 | P0 | 🟡 | 2026-06-16 修 `uploader_bg` 假跳过；待 work_id=26 复跑 |
 | AUTO-CDP-005 | 提交成功见 `stiker/result` | P0 | 🟡 | submit-result-v2；work_id=20 微信 ✅；待新作品 CMS `succeeded` |
-| AUTO-CDP-006 | CDP 审核状态同步 CMS | P1 | ✅ | `sync-status-cdp.js` · scraped 5/9 · 2026-06-17 |
+| AUTO-CDP-006 | CDP 审核状态同步 CMS | P1 | 🟡 | 逻辑在 `sync-status-cdp.js`；**2026-06-23 改由 `platform-sync:cdp` 独立执行**，待复验 |
 
 **SKIP：** CMS-C4-006 自动提交微信（产品范围外）
 
@@ -47,7 +47,7 @@
 | MP-F3-014 | 上架状态与 CMS 一致 | 队列完成后状态同步 | ⬜ |
 | MP-F3-001~016 | 一键上架 C 端 | 独立 C 端流程；自动化管平台草稿 | 见 TEST-SPEC-v3 §F3 |
 
-C 端全套用例仍以 [TEST-SPEC-v3.md](./TEST-SPEC-v3.md)（269 条 · Gate 164）为准；本文件仅增量记录**表情平台上架自动化**专项。
+C 端全套用例仍以 [TEST-SPEC-v3.md](./TEST-SPEC-v3.md)（**275 条 · Gate 170**）为准；本文件仅增量记录**表情平台上架自动化**专项。
 
 ---
 
@@ -90,17 +90,17 @@ cd Meowmoji-CMS01/admin-api && npm test
 | --- | --- |
 | 架构 | CDP 主线代码与文档已收敛；云 headless / Puppeteer 主路径 **已证伪并禁用** |
 | CMS 队列/UI | ✅ 可用 |
-| 审核状态同步 | ✅ 2026-06-17 `sync-status-cdp` 单测 + staging |
-| 端到端直接提交 | 🟡 **P0 待复验**（submit-result-v2 已合入；用新作品验 CMS 回写） |
+| 审核状态同步 | 🟡 **独立脚本** `platform-sync:cdp` 待复验（ADR-021） |
+| 端到端直接提交 | 🟡 **P0 待复验**（submit-result-v2；生产库新作品） |
 | Gate | 表情自动化不单独 Gate；归入 CMS-C4-003 P0 |
 
 ---
 
-## 7. 下一步测试
+## 7. 下一步测试（2026-06-23 更新）
 
-1. 重启 `worker:cdp` → 确认 `automationRev: 2026-06-16-submit-result-v2`
-2. **新作品**端到端（勿重跑 work_id=20）→ CMS `succeeded` +「已提交表情商店」Tab
-3. work_id=26 listing 复跑（`uploader_bg` 修复后横幅/封面/图标）
+1. `worker:cdp` → `automationRev: 2026-06-23-cdp-submit-only-v1`（无启动 sync）
+2. 生产库 **新作品** E2E → CMS `succeeded`
+3. `platform-sync:cdp` 独立调试
 4. 回填 [EXECUTION.md](./EXECUTION.md)
 
 ---
@@ -143,10 +143,31 @@ cd Meowmoji-CMS01/admin-api && npm test
 
 ## 10. CDP 审核状态同步（2026-06-17 · cdp-review-sync-v1）
 
+> **2026-06-23 起：** 周期同步已迁至 **`platform-sync:cdp`**（ADR-021）；本节 worker 顺序为**历史口径**。
+
 | 项 | 结果 |
 | --- | --- |
-| 脚本 | `sync-status-cdp.js` · `npm run automation:sync-review-status` |
-| Worker 顺序 | 启动/周期：平台状态拉取 → `schedule-publish` → `syncSubmittedStatuses` |
-| 指纹 | `AUTOMATION_SCRIPT_REV=2026-06-17-cdp-review-sync-v1` |
-| 验证 | scraped 5/9 albums；`小野的日常2` → `rejected`；`node --test test/automation-cdp-config.test.js` 3 pass |
-| 关联 | [CHANGELOG](../docs/live/CHANGELOG.md) cdp-review-sync-v1 · AUTO-CDP-006 |
+| 脚本 | `sync-status-cdp.js` · 现由 `platform-sync:cdp` 调用 |
+| 历史 Worker 顺序 | ~~启动/周期 syncStatuses~~ → 已移除 |
+| 指纹（现行） | `platformSyncRev: 2026-06-23-platform-sync-v1` |
+| 验证（2026-06-17） | scraped 5/9 albums；`node --test test/automation-cdp-config.test.js` 3 pass |
+| 关联 | [CHANGELOG](../docs/live/CHANGELOG.md) · AUTO-CDP-006 |
+
+---
+
+## 11. 2026-06-21 ~ 2026-06-23 会话增量（worker 拆分 · CMS · retry）
+
+| ID | 现象 | 根因 | 处置 | 验证 |
+| --- | --- | --- | --- | --- |
+| BUG-AUTO-017 | CMS「从头开始」5000 | `retryAutomationTask` LATERAL + 裸 `FOR UPDATE` | `FOR UPDATE OF t`（`fb55fd6`） | ✅ 用户确认可点 |
+| BUG-AUTO-018 | `worker:cdp` 启动 fatal `page closed` | worker 内嵌 `syncStatuses` 抢 CDP | **ADR-021** 拆 `platform-sync:cdp` | 🟡 worker 应可启动；同步待独立调试 |
+| BUG-AUTO-019 | CDP mutex / 启动顺序修补 | 会话内实验未提交 | **已撤销**；勿回退 | — |
+| BUG-AUTO-020 | 任务「假成功已降级」 | `platformVerified` 未过关 / 微信草稿不完整 | 删微信草稿 + 从头开始 | 运营流程 |
+
+| 项 | 指纹 / 命令 |
+| --- | --- |
+| 上架 worker | `2026-06-23-cdp-submit-only-v1` · `npm run worker:cdp` |
+| 微信表情数据同步 | `2026-06-23-platform-sync-v1` · `npm run platform-sync:cdp` |
+| 已验证不可行 | worker 启动+周期 `syncStatuses`；云 headless；Puppeteer launch 主路径 |
+
+**下一步测试：** ① `worker:cdp` 生产库新作品 E2E；② `platform-sync:cdp` 单 tab「我的表情」抓取；③ 回填 [EXECUTION.md](./EXECUTION.md)

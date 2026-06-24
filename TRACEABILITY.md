@@ -1,7 +1,18 @@
 # 测试追溯矩阵（P0 验收 ↔ 自动化）
 
 > **维护：** Cursor · **原则：** [test.md](./test.md)  
-> **状态：** 初稿 · 2026-06-03 · 随用例/单测变更同步
+> **状态：** 2026-06-23 增量修订（v1.0.51 · ADR-019/022）
+
+---
+
+## 增量（2026-06-23）
+
+| 变更 | 验收影响 | 自动化 |
+| --- | --- | --- |
+| ADR-022 模板 B 无贴纸 | MP-F2-010 不要求角标 | `generation.test.js` MVP 空装饰 + `decoration-picker` 二期规则 |
+| ADR-019 展示态 | MP-F3-014 用 `userDisplayStatus` | `mp-f3-014-user-display-status.mjs` |
+| ADR-018 上架提交 | CMS-C4-003 自动提交 | `sticker-automation-test-2026-06.md` E2E 待复验 |
+| Gate3 关闭 | 默认环境正式版+api | [environments.md](./environments.md) |
 
 ---
 

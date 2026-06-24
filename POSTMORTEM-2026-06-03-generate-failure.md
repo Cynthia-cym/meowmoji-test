@@ -133,7 +133,7 @@ cd deploy/cms && docker compose --env-file .env up -d cms-api cms-automation-wor
 | --- | --- |
 | **你** | Secret 重置 → 通知 Cursor 更新 staging；设计稿就绪 → 替换三 PNG 并告知上传 COS |
 | **Cursor** | 体验版 upload 前跑 §5.2 清单；真机失败先 §5.1 日志再改代码 |
-| **Codex** | 用例仓补充 upload 401 / 串行 code 边界（不写实现） |
+| **Codex** | —（ADR-011 起不再维护用例） |
 
 ---
 

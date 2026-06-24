@@ -15,6 +15,7 @@
 | 改进待办（审查） | [TEST-IMPROVEMENT-BACKLOG.md](./TEST-IMPROVEMENT-BACKLOG.md) |
 | 追溯矩阵 | [TRACEABILITY.md](./TRACEABILITY.md) |
 | 执行记录 | [EXECUTION.md](./EXECUTION.md) |
+| **文档漂移整改** | [TEST-DOC-DRIFT-REMEDIATION.md](./TEST-DOC-DRIFT-REMEDIATION.md) |
 | **表情上架自动化测试** | [sticker-automation-test-2026-06.md](./sticker-automation-test-2026-06.md) |
 | 索引（legacy） | `miniprogram-test.md` · `cms-admin-test.md` |
 

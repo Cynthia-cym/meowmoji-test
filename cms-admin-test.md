@@ -3,8 +3,8 @@
 > **维护：** Cursor（规格真源 · ADR-011）  
 > **执行：** Cursor（浏览器）· **产品不参与 CMS 点测**  
 > **原则：** [test.md](./test.md)  
-> **地址：** [https://cms.meowmoji.cn](https://cms.meowmoji.cn)  
-> **更新：** 2026-06-03（v2.1 演进）  
+> **地址：** [https://cms.meowmoji.cn](https://cms.meowmoji.cn)（**生产 API**）  
+> **环境：** 见 [environments.md](./environments.md) — 默认 **cms + api**；staging 仅联调  
 > **v2 完整规格：** [TEST-SPEC-v2.md](./TEST-SPEC-v2.md) · [飞书验收清单](https://qcnp7uavxd21.feishu.cn/wiki/DqxmwME1giejvgkauWycNXqanRc)
 
 **通过标准：** 每步实际结果与「预期」一致；失败按 [issue-template.md](./issue-template.md) 提交到 `Meowmoji-CMS01` Issues。
@@ -121,8 +121,8 @@
 1. 进入上架任务页面。
 2. 查看「待上架」或草稿类列表。
 3. 确认记录是否进入草稿/待人工提交状态。
-4. 不执行自动提交到微信平台的验收。
-**预期：** 顶部需按 ADR-005 理解为“仅保存草稿，管理员手动提交”；页面能区分待上架、草稿或已提交等状态；本轮不验收 Puppeteer 自动提交微信。
+4. 不执行自动提交到微信表情开放平台的验收。
+**预期：** 按 **ADR-018**：本机 `worker:cdp` 自动点击平台【提交】；CMS 任务 `succeeded` 且进入「已提交表情商店」；**非** ADR-005「仅保存草稿」口径。
 **优先级：** P0
 **环境：** cms.meowmoji.cn + staging 数据
 **验收方式：** 浏览器人工点击

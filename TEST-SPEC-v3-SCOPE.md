@@ -1,6 +1,6 @@
 # Meowmoji 测试用例 v3 · 工作范围
 
-> **状态：** **定稿** · **日期：** 2026-06-03  
+> **修订（2026-06-23）：** 模板 B 贴纸 MVP 不交付（ADR-022）；Gate 已关闭，后续增量见 [TEST-DOC-DRIFT-REMEDIATION.md](./TEST-DOC-DRIFT-REMEDIATION.md)  
 > **用例：** [TEST-SPEC-v3.md](./TEST-SPEC-v3.md) — **269 条**  
 > **优先级：** [TEST-PRIORITY-v3.md](./TEST-PRIORITY-v3.md) — **Gate P0+P1 = 164**
 
@@ -44,4 +44,4 @@
 
 ## 范围外
 
-客服工单 · 微信 API 上架 · 移动 CMS · Puppeteer 自动提交 · F10 微信已上架通知（P3）
+客服工单 · 微信 API 上架 · 移动 CMS · **云 headless / Puppeteer 主路径上架**（ADR-017 已证伪）· F10 微信已上架通知（P3）
