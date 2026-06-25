@@ -1,6 +1,6 @@
 # Meowmoji 测试排期 v3
 
-> **Gate：** P0+P1 = 164 条 · **原则：** [test.md](./test.md)  
+> **Gate：** P0+P1 = 170 条 · **原则：** [test.md](./test.md)  
 > **真机路径：** [TEST-ACCEPTANCE-PATHS-v3.md](./TEST-ACCEPTANCE-PATHS-v3.md)
 
 ---
@@ -35,7 +35,7 @@
 | D2 | CMS P1（C1/C3/C5/C6/C8 + BND-CMS） |
 | D3 | E2E-002–005 · NFR-SEC/UX/PERF 冒烟 · EXC/PATH P1 |
 
-**D3 出口：** Gate 164 条 EXECUTION 有结果；失败项进飞书 + Issue。
+**D3 出口：** Gate 170 条 EXECUTION 有结果；失败项进飞书 + Issue。
 
 ---
 

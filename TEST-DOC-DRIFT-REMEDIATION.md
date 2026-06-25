@@ -12,7 +12,7 @@
 | --- | --- |
 | 小程序 | 正式版 **v1.0.51** 已全量（Gate3 关闭） |
 | API | 正式 `api.meowmoji.cn`；体验版联调 `stg-api` |
-| Gate | **Gate4** 上线观测；TEST-SPEC v3 Gate 164 **已关闭**（2026-06-20） |
+| Gate | **Gate4** 上线观测；Gate3 **164 已关闭**（2026-06-20）；广场 v2 增补后规格 **170**（2026-06-24，**不走 Gate 表逐项**） |
 | 上架自动化 | 本机 **Chrome CDP** + `worker:cdp`（ADR-017/018/021）；云 Worker **禁用** |
 | 提交策略 | **自动点【提交】**（ADR-018）；非 ADR-005 草稿 |
 | 模板 B 贴纸 | **MVP 不交付**（ADR-022）；`TEMPLATE_B_DECORATIONS_MVP_ENABLED=false` |

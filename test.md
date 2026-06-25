@@ -1,6 +1,6 @@
 # Meowmoji 测试工作原则（Cursor 执行基准）
 
-> **状态：** live · **更新：** 2026-06-23  
+> **状态：** live · **更新：** 2026-06-24  
 > **框架来源：** Vibe Coding 项目测试用例设计原则（完整收录）  
 > **适用范围：** Cursor 全部测试工作 · 产品仅真机验收（ADR-011）  
 > **策略索引：** [docs/live/TEST.md](../docs/live/TEST.md)
