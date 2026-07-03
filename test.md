@@ -25,6 +25,7 @@
 | [feishu-gate-v3.md](./feishu-gate-v3.md) | Gate 填表镜像 |
 | [TRACEABILITY.md](./TRACEABILITY.md) | 验收 ↔ 单元/集成映射 |
 | [BUG-INVESTIGATION-PRINCIPLES.md](../docs/live/BUG-INVESTIGATION-PRINCIPLES.md) | Bug 五阶段详版 |
+| [DEBUG-LOG.md](../docs/live/DEBUG-LOG.md) | Debug session 个案留档 |
 
 ---
 
@@ -221,7 +222,7 @@
 
 # 八、Bug 排查与修复原则
 
-> 详版：[BUG-INVESTIGATION-PRINCIPLES.md](../docs/live/BUG-INVESTIGATION-PRINCIPLES.md)
+> 详版：[BUG-INVESTIGATION-PRINCIPLES.md](../docs/live/BUG-INVESTIGATION-PRINCIPLES.md) · **个案留档：** [DEBUG-LOG.md](../docs/live/DEBUG-LOG.md)
 
 **核心信条：** 证据先于结论 · 分层定位 · 文案是线索不是结论 · 找不到就继续挖或求助
 
@@ -237,7 +238,7 @@
 | ② 排查方向 | 2–4 条假设 + 第一条证据 | 跳过直接猜配置/改代码 |
 | ③ 取证 | 日志、状态码、DB、复现 | healthz/错误页当最终结论 |
 | ④ 下结论 | 证据支持 + 互斥假设否定 | 证据不足写「已定位」 |
-| ⑤ 修复 | 最小改动 + 同观测面验证 + 更新用例 | 只改文案不修根因 |
+| ⑤ 修复 | 最小改动 + 同观测面验证 + 更新用例 + **DEBUG-LOG 留档**（多轮 session） | 只改文案不修根因 |
 
 ---
 
@@ -249,7 +250,7 @@
 
 执行：CI 单元/集成 → 系统层 → EXECUTION.md
 验收：产品真机旅程 → 飞书填表
-缺陷：五阶段 → 修复 → 回归 → CHANGELOG
+缺陷：五阶段 → 修复 → 回归 → CHANGELOG · **DEBUG-LOG**（多轮排查时）
 ```
 
 ---
