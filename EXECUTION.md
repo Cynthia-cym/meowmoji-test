@@ -112,3 +112,27 @@ node --test tests/illustration-size.test.mjs \
 | D3 | P1 CMS + E2E + NFR 冒烟 | Cursor |
 
 **SKIP（P3）：** MP-F10-* · CMS-C4-006 自动提交微信
+
+---
+
+## 2026-08-11 · 上线后埋点恢复预发布增量验证
+
+- **版本/迭代基线：** Mini 体验版基线 `v1.0.59` @ `0c8558a`；生产 API 基线 `b44ae51`；本地恢复 branches 均为 `codex/post-launch-analytics-20260811`（CMS `07cfa38`、Mini `40431ec`、Test `0526fd5`，本记录提交前）。
+- **改动范围：** 小程序埋点稳定 `eventId`、脱敏诊断、有限重试与批次确认；API 幂等接收/结构化计数/90 天保留；Dashboard 过时测试维护；CMS/Mini 增量 CI；五份 live smoke/恢复脚本移除弱默认密码。本轮没有版本 bump、部署、体验版上传或公众平台配置变更。
+- **路径占位：** `<workspace>` 为 CMS 根工作区；`<cms-worktree>` 为本轮 CMS feature checkout（提升后对应 `<workspace>/Meowmoji-CMS01`）；`<mini-worktree>` 为本轮 Mini feature checkout（提升后对应 `<workspace>/WeChatProjects/meowmoji`）。
+- **自动化：**
+  - `cd <cms-worktree>/admin-api && npm test` → 259/259，exit 0。
+  - `cd <cms-worktree>/admin-web && npm test && npm run build` → 57/57，build exit 0。
+  - `cd <mini-worktree> && npm run check:all` → runtime/assets/mini/cloud checks 通过，194/194，exit 0。
+  - `cd <mini-worktree> && git ls-files -z '*.js' '*.mjs' '*.cjs' | xargs -0 -n1 node --check` → 全部 tracked JS syntax exit 0。
+  - `cd <cms-worktree>/admin-api && node --test test/analytics-sanitize.test.js test/mini-analytics-route.test.js test/analytics-retention.test.js` → API analytics 23/23。
+  - `cd <mini-worktree> && node --test tests/analytics.test.mjs` → Mini analytics 23/23。
+  - `cd <cms-worktree>/admin-api && node --test test/credential-script-contract.test.js` → credential contract 19/19。
+  - `cd <cms-worktree> && ruby -e 'require "yaml"; ARGV.each { |path| YAML.load_file(path) }' .github/workflows/ci.yml <mini-worktree>/.github/workflows/ci.yml` → workflow YAML 2/2 parsed。
+  - `cd <cms-worktree> && bash -n deploy/cms/smoke-staging.sh deploy/cms/smoke-vercel.sh deploy/cms/smoke-error-handling.sh deploy/cms/orca-staging-update.sh` → Bash syntax 4/4。
+  - `cd <workspace> && ./scripts/doc-consistency-check.sh` → PASS。
+- **真实链路证据：** 2026-08-11 只读 SSH 确认正确生产主机/容器与 `current_database()=meowmoji`，`analytics_events=0`；全部保留生产 Nginx access log 对 `/api/mini/analytics` 命中 0；fresh production healthz 返回 `code=0`、`deployTarget=production`、`status=ok`。该基线仅排除 H6 与保留历史窗口内 H5，不证明埋点恢复。
+- **产品真机结论：** **pending**；尚未上传包含本轮诊断的新体验版，也未执行新版本“冷启动→首页→上传页”。
+- **未覆盖项：** 用户授权后三仓 feature branches 提升/push `main`；从 CMS `main` 部署兼容 API/schema；从 Mini `main` bump 并上传新体验版；确认公众平台 `request` 合法域名含 `https://api.meowmoji.cn`；同一 `session_id + 时间窗` 串联客户端诊断、生产 Nginx 2xx、DB 精确事件与 Dashboard 增量。
+- **负责人：** Cursor（本地实现/自动化/运行时取证）· 产品（授权后的真机操作与确认）。
+- **结论：** **PARTIAL / local ready**。自动化与本地构建已绿，但埋点 P0 仍是唯一发布阻塞；本记录不得标为 PASS 或 closed。
