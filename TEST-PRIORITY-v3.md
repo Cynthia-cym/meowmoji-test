@@ -1,3 +1,9 @@
+---
+status: archived
+frozen_at: 2026-08-11
+superseded_by: README.md
+---
+
 # Meowmoji 测试优先级 v3（已定稿）
 
 > **用例真源：** [TEST-SPEC-v3.md](./TEST-SPEC-v3.md)（275 条，已全部标注）  

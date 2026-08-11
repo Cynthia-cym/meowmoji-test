@@ -1,3 +1,9 @@
+---
+status: archived
+frozen_at: 2026-08-11
+superseded_by: README.md
+---
+
 # Meowmoji 测试用例 v3（定稿）
 
 > **版本：** 2026-06-03 · **维护：** Cursor · **原则：** [test.md](./test.md)  

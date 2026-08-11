@@ -1,41 +1,36 @@
 # Meowmoji 交叉测试仓库
 
-> **测试原则：** [test.md](./test.md)（Cursor 执行基准 · ADR-011）  
-> **分工：** Cursor 负责全部测试；产品仅真机验收
+> **状态：** live · **更新：** 2026-08-11 · **现行策略：** ADR-026 上线后增量测试
 
-## 当前版本（V2026.06.03 · v2.1 演进中）
+本仓现行入口是本文件、[test.md](./test.md) 与只追加的 [EXECUTION.md](./EXECUTION.md)。正式版 v1.0.51 的 v3 全量 Gate 已完成使命；后续迭代不重跑、不改写历史计数或结果。
 
-| 真源 | 文件 |
+## 每次迭代怎么测
+
+1. 为新增或修改行为补/跑自动化测试；Bug 必须先见回归测试失败。
+2. 运行改动仓与直接调用方的受影响单元/集成回归。
+3. 跨端、环境或第三方改动验证最短真实链路并保留证据。
+4. 仅用户可见的新功能或行为变化请求产品真机验收。
+
+**通过：** 改动测试全绿 + 无未关闭的受影响 P0 +（需要真机时）产品明确确认。
+
+## 分工
+
+| 角色 | 后续迭代职责 |
 | --- | --- |
-| **工作原则** | [test.md](./test.md) |
-| **用例 v3** | [TEST-SPEC-v3.md](./TEST-SPEC-v3.md) · Gate [feishu-gate-v3.md](./feishu-gate-v3.md) |
-| **产品路径** | [TEST-ACCEPTANCE-PATHS-v3.md](./TEST-ACCEPTANCE-PATHS-v3.md) |
-| 真机路径 | [TEST-ACCEPTANCE-PATHS.md](./TEST-ACCEPTANCE-PATHS.md)（v3 定稿后更新） |
-| 飞书填表 | [Wiki 验收清单](https://qcnp7uavxd21.feishu.cn/wiki/DqxmwME1giejvgkauWycNXqanRc) |
-| 改进待办（审查） | [TEST-IMPROVEMENT-BACKLOG.md](./TEST-IMPROVEMENT-BACKLOG.md) |
-| 追溯矩阵 | [TRACEABILITY.md](./TRACEABILITY.md) |
-| 执行记录 | [EXECUTION.md](./EXECUTION.md) |
-| **文档漂移整改** | [TEST-DOC-DRIFT-REMEDIATION.md](./TEST-DOC-DRIFT-REMEDIATION.md) |
-| **表情上架自动化测试** | [sticker-automation-test-2026-06.md](./sticker-automation-test-2026-06.md) |
-| 索引（legacy） | `miniprogram-test.md` · `cms-admin-test.md` |
+| **Cursor** | 改动用例、自动化/影响回归、真实链路取证、Bug 与测试文档维护。 |
+| **产品** | 仅用户可见行为变化的真机验收与结论。 |
+| **Codex** | 维持 ADR-011 限制：不维护测试用例。 |
 
-历史 MP-001~302 / `cms-test.md` 仅追溯。
+## 记录与历史
 
-## 分工（ADR-011）
-
-| 角色 | 职责 |
+| 文档 | 用途 |
 | --- | --- |
-| **Cursor** | 用例设计 · 开发者工具/CMS 测试 · 自动化 · Bug · 文档 |
-| **产品** | **真机验收** + 飞书填表 |
-| **Codex** | 不再维护用例（[CODEX.md](./CODEX.md) 已归档说明） |
+| [test.md](./test.md) | 增量测试原则与记录字段 |
+| [EXECUTION.md](./EXECUTION.md) | 只追加的迭代执行记录 |
+| [TEST-SPEC-v3.md](./TEST-SPEC-v3.md) · [TEST-SPEC-v3-SCOPE.md](./TEST-SPEC-v3-SCOPE.md) | 已归档的正式版用例与范围历史 |
+| [TEST-PRIORITY-v3.md](./TEST-PRIORITY-v3.md) · [TEST-SCHEDULE-v3.md](./TEST-SCHEDULE-v3.md) | 已归档的优先级与排期历史 |
+| [TEST-ACCEPTANCE-PATHS-v3.md](./TEST-ACCEPTANCE-PATHS-v3.md) · [feishu-gate-v3.md](./feishu-gate-v3.md) | 已归档的产品路径与飞书 Gate 历史 |
 
-## 仓库关系
+冻结文件均标记 `status: archived`、`frozen_at: 2026-08-11`、`superseded_by: README.md`。它们保留追溯价值，但不能作为新迭代的日常 Gate 或发布准入。
 
-| 仓库 | 用途 |
-| --- | --- |
-| [meowmoji-test](https://github.com/Cynthia-cym/meowmoji-test) | 本仓 · 测试真源 |
-| [Meowmoji-CMS01](https://github.com/Cynthia-cym/Meowmoji-CMS01) | CMS · Live 见 `docs/live/` |
-| [Meowmoji](https://github.com/Cynthia-cym/Meowmoji) | 小程序运行代码 |
-| [Meowmoji--mini-program](https://github.com/Cynthia-cym/Meowmoji--mini-program) | 小程序文档 |
-
-Live：[STATUS](https://github.com/Cynthia-cym/Meowmoji-CMS01/blob/main/docs/live/STATUS.md) · [TEST](https://github.com/Cynthia-cym/Meowmoji-CMS01/blob/main/docs/live/TEST.md) · [DECISIONS ADR-011](https://github.com/Cynthia-cym/Meowmoji-CMS01/blob/main/docs/live/DECISIONS.md)
+Live：[STATUS](https://github.com/Cynthia-cym/Meowmoji-CMS01/blob/main/docs/live/STATUS.md) · [TEST](https://github.com/Cynthia-cym/Meowmoji-CMS01/blob/main/docs/live/TEST.md) · [ADR-026](https://github.com/Cynthia-cym/Meowmoji-CMS01/blob/main/docs/live/DECISIONS.md#adr-026-正式版上线后切换为增量测试2026-08-11)

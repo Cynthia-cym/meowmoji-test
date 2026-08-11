@@ -1,14 +1,25 @@
-# 小程序交叉测试 · 执行记录
+# 小程序交叉测试 · 执行记录（只追加）
 
-> **用例 v3：** [TEST-SPEC-v3.md](./TEST-SPEC-v3.md) · **Gate 170** · [TEST-PRIORITY-v3.md](./TEST-PRIORITY-v3.md)  
-> **排期：** [TEST-SCHEDULE-v3.md](./TEST-SCHEDULE-v3.md) · **产品路径：** [TEST-ACCEPTANCE-PATHS-v3.md](./TEST-ACCEPTANCE-PATHS-v3.md)  
-> **上线跟进：** [LAUNCH-TRACKING.md](../docs/live/LAUNCH-TRACKING.md)（**Gate3/Gate4** · v1.0.51 已全量）  
-> **文档漂移整改：** [TEST-DOC-DRIFT-REMEDIATION.md](./TEST-DOC-DRIFT-REMEDIATION.md)  
-> **飞书：** [feishu-gate-v3.md](./feishu-gate-v3.md) · [Wiki](https://qcnp7uavxd21.feishu.cn/wiki/DqxmwME1giejvgkauWycNXqanRc)
+> **现行策略：** ADR-026 上线后增量测试；[README.md](./README.md) 与 [test.md](./test.md) 为现行入口。
+> **历史：** v3 Gate、排期和飞书镜像已冻结；下方既有记录不可改写。
 
 ---
 
-## 说明（v3 · 2026-06-03）
+## 新增迭代记录格式（只追加到本文末尾）
+
+```markdown
+## YYYY-MM-DD · <版本/迭代>
+
+- **改动范围：** …
+- **自动化：** `<命令>` → <结果>
+- **真实链路证据：** <环境、时间窗、请求/日志/数据证据；不适用须说明>
+- **产品真机结论：** 通过 | 不通过 | 不适用（原因）
+- **未覆盖项：** 无 | …
+- **负责人：** …
+- **结论：** 通过（改动测试全绿 + 无未关闭受影响 P0 + 必要时产品确认） | 未通过
+```
+
+## v3 历史说明（冻结，勿改）
 
 - **Gate：** P0(62) + P1(108) = **170**
 - **产品：** 真机 P0 一日路径（TEST-ACCEPTANCE-PATHS-v3）
@@ -16,7 +27,7 @@
 
 ---
 
-## 执行记录
+## v3 历史执行记录（冻结，勿改）
 
 | 日期 | 执行人 | 环境 | Gate 通过 | 失败/待测 | 备注 |
 | --- | --- | --- | --- | --- | --- |

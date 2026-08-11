@@ -1,3 +1,9 @@
+---
+status: archived
+frozen_at: 2026-08-11
+superseded_by: README.md
+---
+
 # Meowmoji 测试用例 v3 · 工作范围
 
 > **修订（2026-07-08）：** 微信服务通知仅 A3/R2/C3；已上架改 MP-F6-010 站内信验收 + 独立短链站内信用例  

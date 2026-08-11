@@ -1,3 +1,9 @@
+---
+status: archived
+frozen_at: 2026-08-11
+superseded_by: README.md
+---
+
 # Meowmoji 真机验收路径 v3（产品 · P0 主路径）
 
 > **用例：** [TEST-SPEC-v3.md](./TEST-SPEC-v3.md) · **优先级：** [TEST-PRIORITY-v3.md](./TEST-PRIORITY-v3.md)  

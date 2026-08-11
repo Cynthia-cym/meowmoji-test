@@ -1,3 +1,9 @@
+---
+status: archived
+frozen_at: 2026-08-11
+superseded_by: README.md
+---
+
 # Gate 用例镜像 v3（P0+P1 = 170）
 
 > 飞书：https://qcnp7uavxd21.feishu.cn/wiki/DqxmwME1giejvgkauWycNXqanRc  
