@@ -136,3 +136,14 @@ node --test tests/illustration-size.test.mjs \
 - **未覆盖项：** 用户授权后三仓 feature branches 提升/push `main`；从 CMS `main` 部署兼容 API/schema；从 Mini `main` bump 并上传新体验版；确认公众平台 `request` 合法域名含 `https://api.meowmoji.cn`；同一 `session_id + 时间窗` 串联客户端诊断、生产 Nginx 2xx、DB 精确事件与 Dashboard 增量。
 - **负责人：** Cursor（本地实现/自动化/运行时取证）· 产品（授权后的真机操作与确认）。
 - **结论：** **PARTIAL / local ready**。自动化与本地构建已绿，但埋点 P0 仍是唯一发布阻塞；本记录不得标为 PASS 或 closed。
+
+## 2026-08-12 · 埋点恢复发布进度（真机前）
+
+- **版本/迭代：** CMS production `b4878ac`；Mini v1.0.60 `e8b9af8`；Test `8d4918b`。
+- **改动范围：** 三仓 clean/non-diverged 检查后 `git merge --ff-only` 提升并 push `main`；生产 API/schema 标准部署；v1.0.60 体验版上传。本条不包含产品真机结论。
+- **自动化与部署验证：** CMS API 259/259；Mini `check:all` 194/194 + tracked JS/MJS/CJS syntax；production healthz=`production/ok`；`event_id` 列、部分唯一索引 `valid/ready/unique`、retention 启动均通过。
+- **真实链路基线：** 空请求路由返回受控 HTTP 400 且未写入事件；2026-08-12 11:12 +08:00 真机操作前 `current_database()=meowmoji`、`analytics_events=0`。CLI upload v1.0.60 成功，TOTAL 411.0 KB、main 288.3 KB。
+- **产品真机结论：** **pending**；等待产品在 v1.0.60 执行“冷启动→首页→上传页”，提供分钟级时间、设备/网络和脱敏 `[analytics-diag]`。
+- **未覆盖项：** 公众平台 `request` 合法域名确认；同一 session/time window 的 Nginx 2xx、DB 精确事件、Dashboard 可解释增量。
+- **负责人：** Cursor（部署/取证）· 产品（真机操作/域名确认）。
+- **结论：** **PARTIAL / deployed + trial ready**。P0 保持打开，不得标为 PASS 或 closed。
