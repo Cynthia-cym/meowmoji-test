@@ -147,3 +147,20 @@ node --test tests/illustration-size.test.mjs \
 - **未覆盖项：** 公众平台 `request` 合法域名确认；同一 session/time window 的 Nginx 2xx、DB 精确事件、Dashboard 可解释增量。
 - **负责人：** Cursor（部署/取证）· 产品（真机操作/域名确认）。
 - **结论：** **PARTIAL / deployed + trial ready**。P0 保持打开，不得标为 PASS 或 closed。
+
+## 2026-08-14 · 底部 Tab 未选中图标原路径更新
+
+- **版本/迭代：** Mini `main@684b169`；包版本仍为 **1.0.60**，本轮未重新上传小程序版本。
+- **改动范围：** 仅替换「广场 / 制作 / 我的」3 个 inactive SVG，并增加 fail-closed COS 上传、全量备份、歧义失败回滚与脱敏错误契约；3 个 active SVG、manifest、查询参数 `20260625tab` 与运行绑定不变。
+- **路径占位：** `<workspace>` 为 CMS 根工作区；`<mini>` 为 `<workspace>/WeChatProjects/meowmoji`。
+- **自动化：**
+  - `cd <mini> && node --test tests/custom-tab-bar.test.mjs tests/tab-icon-upload-contract.test.mjs tests/tab-icon-upload-cli.test.mjs` → 54/54，exit 0。
+  - `cd <mini> && npm run check:all` → 246/246，exit 0。
+  - `cd <mini> && git ls-files -z -- '*.js' '*.mjs' '*.cjs' | xargs -0 -n1 node --check` → tracked JS/MJS/CJS syntax exit 0。
+  - `cd <mini> && bash -n scripts/cos-upload-tab-icons.sh` → exit 0。
+  - `cd <mini> && shasum -a 256 custom-tab-bar/icon-*.svg` → 3 inactive 为 `0b0cf725…030e` / `ed72a0ef…2c09` / `f57b461f…a2cd`；3 active 保持 `c931103a…64f4` / `29be233a…635c` / `038f8184…6efd`。
+- **真实链路证据：** 首次 COS 备份因 SecretId / SecretKey 配对错误返回 403，且零写；匹配后 3 个对象备份/PUT 成功。COS 源站逐对象 HTTP 200 且哈希精确匹配；首次 CDN 为 2 旧 / 1 新，精确 URL 刷新任务 `632809032536591411` 提交后，3 条 CDN 当前查询 URL 均 HTTP 200 且匹配批准哈希。
+- **产品真机结论：** **pending**；需完全关闭并重开小程序，依次切换「广场 / 制作 / 我的」，确认未选中图标已替换、选中图标未变，且无裁切、偏移或文字变化。
+- **未覆盖项：** 产品真机视觉验收；本轮不需要新版本上传或微信审核。
+- **负责人：** Cursor（实现、自动化、COS/CDN 发布与取证）· 产品（真机目视确认）。
+- **结论：** **PARTIAL / infrastructure propagated**。本地、COS 源站与 CDN 证据已闭环；用户可见行为仍待产品真机确认。
