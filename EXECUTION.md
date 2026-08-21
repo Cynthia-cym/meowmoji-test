@@ -189,9 +189,10 @@ node --test tests/illustration-size.test.mjs \
 
 ## 2026-08-21 · v1.0.63 欢迎页、登录返回与配额
 
-- **版本/迭代：** Mini **v1.0.63**；CMS/API 本轮发布提交待生成。
+- **版本/迭代：** Mini `e45a689` / 体验版 **v1.0.63**；production API `15c6f19`。
 - **改动范围：** 欢迎页背景与按钮同步显示；登录页透明导航返回；普通用户每日生成 10 次、提交上架 5 次；隐藏剩余次数说明，达限使用指定弹窗文案。
 - **自动化：** Mini `npm run check:all` → 251/251；API `npm test` → 276 pass、2 skip。
-- **数据迁移：** 仅把生产已确认的旧默认 `daily_submit_limit=3/version=1` 更新为 5，并同步未降额且旧值为 5 的用户到 10；部署后需复核聚合值。
+- **数据迁移：** 仅把生产已确认的旧默认 `daily_submit_limit=3/version=1` 更新为 5，并同步未降额且旧值为 5 的用户到 10；部署后确认 25 个既有用户为 10，系统设置为 5/version 2。
 - **产品真机结论：** pending；体验版上传后验证欢迎页同步出现、登录返回，以及生成/提交达限弹窗。
-- **结论：** **LOCAL PASS / deployment pending**。
+- **发布验证：** production healthz 正常；容器配额 10/10/5；微信 CLI upload 成功（TOTAL 416.8 KB、main 293.4 KB）。未提交正式审核、未发布正式版。
+- **结论：** **DEPLOYED + TRIAL READY / product acceptance pending**。
