@@ -175,3 +175,14 @@ node --test tests/illustration-size.test.mjs \
 - **未覆盖项：** 产品真机视觉与交互确认；未提交微信审核或发布正式版。
 - **负责人：** Codex（实现、自动化、部署、体验版上传）· 产品（真机验收）。
 - **结论：** **PARTIAL / deployed + trial ready**。自动化和生产 API 已通过，用户可见行为待产品确认。
+
+## 2026-08-21 · v1.0.62 广场首屏 Skeleton
+
+- **版本/迭代：** Mini `3f20061`；体验版 **v1.0.62**。
+- **改动范围：** 广场首次 loading 增加 4 张 2×2 同构卡片骨架与低对比度扫光；继续保留「正在加载中」，且与成功空态互斥；补充 Mini `docs/design.md` Skeleton 规范。
+- **自动化：** `node --test tests/guest-access.test.mjs` → 5/5；`npm run check:all` → 251/251；微信开发者工具 CLI preview 编译成功。
+- **真实链路证据：** CLI upload v1.0.62 成功，TOTAL 414.4 KB、main 291.7 KB；本轮无 API、生产服务或 COS 变更。
+- **产品真机结论：** pending；需在弱网或首次进入广场时确认骨架可见、扫光自然、数据返回后无明显跳动，且空结果只展示空态。
+- **未覆盖项：** 产品真机视觉与状态切换确认；未提交微信审核或发布正式版。
+- **负责人：** Codex（实现、自动化、体验版上传）· 产品（真机验收）。
+- **结论：** **PARTIAL / trial ready**。自动化与上传通过，用户可见动效待产品确认。
