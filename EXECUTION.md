@@ -164,3 +164,14 @@ node --test tests/illustration-size.test.mjs \
 - **未覆盖项：** 产品真机视觉验收；本轮不需要新版本上传或微信审核。
 - **负责人：** Cursor（实现、自动化、COS/CDN 发布与取证）· 产品（真机目视确认）。
 - **结论：** **PARTIAL / infrastructure propagated**。本地、COS 源站与 CDN 证据已闭环；用户可见行为仍待产品真机确认。
+
+## 2026-08-21 · v1.0.61 游客浏览与广场首屏加载
+
+- **版本/迭代：** production API `9358ca2`；Mini `ba52c08`；体验版 **v1.0.61**。
+- **改动范围：** 广场 loading/empty 状态分离；游客访问三个 Tab 首页；点赞弹窗登录、制作按钮登录、“我的”二级入口登录；API 游客只读广场列表。
+- **自动化：** `admin-api npm test` → 276 pass、2 skip；Mini `npm run check:all` → 251/251；针对性 Mini 67/67、API 7/7。
+- **真实链路证据：** 标准生产脚本部署成功，production healthz 正常；未注册 OpenID 请求 `/internal/gallery/works` 返回 `guest_gallery=ok`；CLI upload v1.0.61 成功，TOTAL 411.7 KB、main 289.0 KB。
+- **产品真机结论：** pending；等待验证游客冷启动、三 Tab 浏览、点赞弹窗及登录跳转。
+- **未覆盖项：** 产品真机视觉与交互确认；未提交微信审核或发布正式版。
+- **负责人：** Codex（实现、自动化、部署、体验版上传）· 产品（真机验收）。
+- **结论：** **PARTIAL / deployed + trial ready**。自动化和生产 API 已通过，用户可见行为待产品确认。
